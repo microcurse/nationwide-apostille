@@ -1,0 +1,8 @@
+/*
+* Make editor wp-blocks wider
+*
+*/
+
+.editor-styles-wrapper .wp-block {
+  max-width: 1400px !important;
+}
