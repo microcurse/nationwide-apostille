@@ -1,7 +1,7 @@
 .has-primary-button-blue-background-color {
-  background-color: #1275d1;
+  background-color: #1275d1 !important;
 }
 
 .has-secondary-tan-background-color {
-  background-color: #cbc0ad;
+  background-color: #cbc0ad !important;
 }
