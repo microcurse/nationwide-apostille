@@ -127,3 +127,62 @@ function na_add_copyright() {
 	return $copyright;
 }
 add_filter( 'genesis_footer_creds_text', 'na_add_copyright' );
+
+
+// Add new taxonomy, NOT hierarchical (like tags)
+function create_states_taxonomy() {
+	if(!taxonomy_exists('states')) {
+		register_taxonomy('states', array('post'),array(
+			'show_ui' => false
+		));
+	}
+}
+add_action('init', 'create_states_taxonomy');
+
+/** When the post is saved, saves our custom data */
+function save_first_letter( $post_id ) {
+	// verify if this is an auto save routine
+	// If it is our form has not been submitted, so we don't want to do anything
+	if ( defined('DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
+		return $post_id;
+
+	// check location (only run for posts)
+	if ( !in_array($_POST['post_type'], $limitPostTypes ))
+		return $post_id;
+
+	// check permissions
+	if ( !current_user_can( 'edit_post', $post_id ))
+		return $post_id;
+
+	// OK, we're authenticated: we need to find and save the data
+	$taxonomy = 'states';
+
+	// set term as first letter of post title, lower case
+	wp_set_post_terms( $post_id, strtolower(substr($_POST['post_title'], 0, 1)), $taxonomy );
+
+	// delete the transient that is storing the alphabet letters
+	delete_transient( 'archive_alphabet' );
+}
+add_action( 'save_post', 'save_first_letter' );
+
+$taxonomy = 'states';
+
+// create array from existing posts
+function run_once() {
+	
+	if ( false === get_transient( 'run_once' ) ) {
+
+		$taxonomy = 'states';
+		$alphabet = array();
+
+		$posts = get_posts(array('numberposts' => -1) );
+
+		foreach( $posts as $p ) :
+			// set term as first letter of post title, lower case
+			wp_set_post_terms( $p->ID, strtolower(substr($p->post_title, 0, 1)), $taxonomy);
+		endforeach; 
+
+		set_transient( 'run_once', 'true' );
+	}
+}
+add_action('init', 'run_once');

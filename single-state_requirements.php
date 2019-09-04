@@ -6,23 +6,11 @@
  *
  */
 
-get_header();
-?>
+// Remove post info
+add_filter( 'genesis_post_info', 'remove_post_info' );
+function remove_post_info ($post_info) {
+	$post_info = '';
+	return $post_info;
+}
 
-	<section id="primary" class="content-area">
-		<main id="main" class="site-main">
-		<h1>TEST THIS SHIT</h1>
-			<?php
-
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
-
-			endwhile; // End of the loop.
-			?>
-
-		</main><!-- #main -->
-	</section><!-- #primary -->
-
-<?php
-get_footer();
+genesis();
