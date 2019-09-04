@@ -871,9 +871,8 @@ th:first-child {
 .archive-description .entry-title,
 .archive-title,
 .author-box-title {
-	font-size: 20px;
-	font-weight: 600;
-	margin-bottom: 10px;
+	font-size: 2em;
+	margin: .67em 0;
 }
 
 .entry-title {
