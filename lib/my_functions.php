@@ -17,7 +17,6 @@ add_filter( 'clean_url', 'na_async_scripts', 11, 1);
 
 function add_scripts_styles() {
   	wp_enqueue_style( 'custom-google-fonts', 'https://fonts.googleapis.com/css?family=Hind:400,700|Merriweather&display=swap', false);
-		wp_enqueue_script( 'sticky-sidebar', get_stylesheet_directory_uri() . '/js/sticky-sidebar/sticky-sidebar.js#asyncload', array( 'jquery' ), '1.0', true);
 		wp_enqueue_style( 'color-styles', get_stylesheet_directory_uri() . '/colors.css' );
 	}
 add_action( 'wp_enqueue_scripts', 'add_scripts_styles', 10 );
@@ -121,9 +120,3 @@ function close_why_choose_us() {
 
 // 4 Column Footer Widgets
 add_theme_support( 'genesis-footer-widgets', 4 );
-
-function na_add_copyright() {
-	$copyright = '<div class="creds"><p>Copyright &copy; ' . date('Y') . ' Nationwide Apostille - All Rights Reserved</p></div>';
-	return $copyright;
-}
-add_filter( 'genesis_footer_creds_text', 'na_add_copyright' );
