@@ -120,3 +120,26 @@ function close_why_choose_us() {
 
 // 4 Column Footer Widgets
 add_theme_support( 'genesis-footer-widgets', 4 );
+
+function show_state_requirements_posts() {
+	$args = array(
+		'post_type'   => 'state_requirements',
+		'post_status' => 'publish'
+	  );
+	  
+	  $query = new WP_Query( $args );
+	  if( $query->have_posts() ):
+		while( $query->have_posts() ) : $query->the_post();
+	  ?>
+		<ul>
+			  <li><h2><?php  get_the_title(); ?></h2>
+			  <p><?php get_the_content(); ?></p>
+			  </li>
+			  <?php
+			  endwhile;
+			endif;
+			wp_reset_query();
+			?>
+		</ul>
+		<?php
+}
