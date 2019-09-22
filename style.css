@@ -833,6 +833,10 @@ th:first-child {
 	padding: 10px 0;
 }
 
+.breadcrumb a {
+	color: #2194FF;
+}
+
 .archive-description p:last-child,
 .author-box p:last-child {
 	margin-bottom: 0;

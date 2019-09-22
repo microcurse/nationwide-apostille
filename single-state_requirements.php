@@ -6,11 +6,11 @@
  *
  */
 
-// Remove post info
-add_filter( 'genesis_post_info', 'remove_post_info' );
-function remove_post_info ($post_info) {
-	$post_info = '';
-	return $post_info;
+
+add_action( 'genesis_after_loop', 'go_back_link');
+function go_back_link() {
+	echo '<a href="https://nationwideapostille.dev.cc/state_requirements/">Go back to all State Requirements</a>';
 }
+
 
 genesis();
