@@ -3,7 +3,7 @@
  *
  * Template for displaying the quote request page. Shows the form in the main content and the estimated total on the side.
  *
- * Template Name: Quote Request
+ * Template Name: Quote Request (not finished)
  *
  * @package Genesis Sample
  * @author  StudioPress
